@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskCardGame", "src\TaskCar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tools", "src\Tools\Tools.csproj", "{8EB04A1B-6CFD-4824-8F3C-ED625783597F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskCardGame.Tests", "tests\TaskCardGame.Tests\TaskCardGame.Tests.csproj", "{51F99FF1-08E5-407A-B5C8-C727A0A76FB8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 	Debug|Any CPU = Debug|Any CPU
@@ -23,5 +25,11 @@ Global
 		{8EB04A1B-6CFD-4824-8F3C-ED625783597F}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
 		{8EB04A1B-6CFD-4824-8F3C-ED625783597F}.ExportRelease|Any CPU.ActiveCfg = Debug|Any CPU
 		{8EB04A1B-6CFD-4824-8F3C-ED625783597F}.ExportRelease|Any CPU.Build.0 = Debug|Any CPU
+		{51F99FF1-08E5-407A-B5C8-C727A0A76FB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51F99FF1-08E5-407A-B5C8-C727A0A76FB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51F99FF1-08E5-407A-B5C8-C727A0A76FB8}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51F99FF1-08E5-407A-B5C8-C727A0A76FB8}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
+		{51F99FF1-08E5-407A-B5C8-C727A0A76FB8}.ExportRelease|Any CPU.ActiveCfg = Debug|Any CPU
+		{51F99FF1-08E5-407A-B5C8-C727A0A76FB8}.ExportRelease|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 EndGlobal

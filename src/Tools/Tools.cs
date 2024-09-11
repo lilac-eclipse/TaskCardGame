@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Tools;
+﻿namespace Tools;
 
 internal static class Tools
 {

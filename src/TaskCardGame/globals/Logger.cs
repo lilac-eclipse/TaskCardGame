@@ -7,36 +7,33 @@ namespace TaskCardGame.globals;
 
 public partial class Logger : Node
 {
-
     public LogLevel ActiveLogLevel { get; set; } = LogLevel.Debug; // Level that will be written
-    
-    public void Debug(string message, [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
-    {
-        FormatAndLog(message, LogLevel.Debug, filePath, lineNumber);
-    }
 
-    public void Info(string message, [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
-    {
+    // Singleton logic
+    public static Logger Instance { get; private set; }
+
+    public void Debug(string message, [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0) =>
+        FormatAndLog(message, LogLevel.Debug, filePath, lineNumber);
+
+    public void Info(string message, [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0) =>
         FormatAndLog(message, LogLevel.Info, filePath, lineNumber);
-    }
-    
-    public void Warn(string message, [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
-    {
+
+    public void Warn(string message, [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0) =>
         FormatAndLog(message, LogLevel.Warn, filePath, lineNumber);
-    }
-    
-    public void Error(string message, [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
-    {
+
+    public void Error(string message, [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0) =>
         FormatAndLog(message, LogLevel.Error, filePath, lineNumber);
-    }
-    
+
     private void FormatAndLog(string format, LogLevel level, string filePath, int lineNumber)
     {
-        if (level < ActiveLogLevel) return;
-        
+        if (level < ActiveLogLevel)
+        {
+            return;
+        }
+
         // Ex: 20:18:35.140 [INFO] ClassName.cs:42 - message
-        var className = filePath.Split("\\").Last().Split("/").Last();
-        var msg = $"{DateTime.Now:HH:mm:ss.fff} [{level}] {className}:{lineNumber} - {format}";
+        string className = filePath.Split("\\").Last().Split("/").Last();
+        string msg = $"{DateTime.Now:HH:mm:ss.fff} [{level}] {className}:{lineNumber} - {format}";
 
         switch (level)
         {
@@ -56,12 +53,14 @@ public partial class Logger : Node
                 break;
         }
     }
-    
-    // Singleton logic
-    public static Logger Instance { get; private set; }
+
     public override void _EnterTree()
     {
-        if (Instance != null) QueueFree(); // The Singleton is already loaded, kill this instance
+        if (Instance != null)
+        {
+            QueueFree(); // The Singleton is already loaded, kill this instance
+        }
+
         Instance = this;
     }
 }

@@ -9,10 +9,10 @@ internal static class ProjToClipboard
 
     private static readonly HashSet<string> FileExtensionsToSkipContent =
         [".svg", ".png", ".jpg", ".jpeg", ".tscn", ".import"];
-    
+
     public static void Run(string[] args)
     {
-        var projectRoot = FindProjectRoot(Directory.GetCurrentDirectory());
+        string projectRoot = FindProjectRoot(Directory.GetCurrentDirectory());
 
         if (string.IsNullOrEmpty(projectRoot))
         {
@@ -20,13 +20,17 @@ internal static class ProjToClipboard
             return;
         }
 
-        var output = new StringBuilder();
+        StringBuilder output = new();
         string[] directories = ["src", "tests"];
-        
-        foreach (var dir in directories)
+
+        foreach (string dir in directories)
         {
-            var fullPath = Path.Combine(projectRoot, dir);
-            if (!Directory.Exists(fullPath)) continue;
+            string fullPath = Path.Combine(projectRoot, dir);
+            if (!Directory.Exists(fullPath))
+            {
+                continue;
+            }
+
             output.AppendLine($"Contents of {dir} directory:");
             output.AppendLine(GetDirectoryStructure(fullPath));
             output.AppendLine();
@@ -36,7 +40,7 @@ internal static class ProjToClipboard
         try
         {
             Clipboard.SetText(output.ToString());
-            Console.WriteLine($"Data copied to clipboard!");
+            Console.WriteLine("Data copied to clipboard!");
         }
         catch (Exception ex)
         {
@@ -53,24 +57,29 @@ internal static class ProjToClipboard
             {
                 return startPath;
             }
+
             startPath = Directory.GetParent(startPath)?.FullName!;
         }
+
         return null!;
     }
 
     private static string GetDirectoryStructure(string path, string indent = "")
     {
-        var structure = new StringBuilder();
-        
-        foreach (var dir in Directory.GetDirectories(path))
+        StringBuilder structure = new();
+
+        foreach (string dir in Directory.GetDirectories(path))
         {
-            if (ShouldSkipDirectory(dir)) continue;
+            if (ShouldSkipDirectory(dir))
+            {
+                continue;
+            }
 
             structure.AppendLine($"{indent}{Path.GetFileName(dir)}/");
             structure.Append(GetDirectoryStructure(dir, indent + "  "));
         }
 
-        foreach (var file in Directory.GetFiles(path))
+        foreach (string file in Directory.GetFiles(path))
         {
             structure.AppendLine($"{indent}{Path.GetFileName(file)}");
         }
@@ -80,13 +89,19 @@ internal static class ProjToClipboard
 
     private static void AddDirectoryContents(string path, StringBuilder output)
     {
-        foreach (var file in Directory.GetFiles(path, "*.*", SearchOption.AllDirectories))
+        foreach (string file in Directory.GetFiles(path, "*.*", SearchOption.AllDirectories))
         {
-            if (ShouldSkipDirectory(Path.GetDirectoryName(file)!)) continue;
+            if (ShouldSkipDirectory(Path.GetDirectoryName(file)!))
+            {
+                continue;
+            }
 
-            var extension = Path.GetExtension(file);
+            string extension = Path.GetExtension(file);
 
-            if (FileExtensionsToSkipContent.Contains(extension)) continue;
+            if (FileExtensionsToSkipContent.Contains(extension))
+            {
+                continue;
+            }
 
             output.AppendLine($"File: {file}");
             output.AppendLine(new string('-', 80));
@@ -96,8 +111,6 @@ internal static class ProjToClipboard
         }
     }
 
-    private static bool ShouldSkipDirectory(string dir)
-    {
-        return dir.Split(Path.DirectorySeparatorChar).Any(segment => DirsToSkip.Contains(segment));
-    }
+    private static bool ShouldSkipDirectory(string dir) =>
+        dir.Split(Path.DirectorySeparatorChar).Any(segment => DirsToSkip.Contains(segment));
 }
