@@ -2,7 +2,7 @@
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskCardGame", "src\TaskCardGame\TaskCardGame.csproj", "{309DC487-605E-4215-B839-3143E4B6B61C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectExporter", "src\Tools\ProjectExporter\ProjectExporter.csproj", "{8EB04A1B-6CFD-4824-8F3C-ED625783597F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tools", "src\Tools\Tools.csproj", "{8EB04A1B-6CFD-4824-8F3C-ED625783597F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
