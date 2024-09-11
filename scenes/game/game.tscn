@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://c2yvogr1rag8p"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7mae0"]
+font_size = 114
+
+[node name="Game" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 213.0
+offset_top = 254.0
+offset_right = 873.0
+offset_bottom = 410.0
+text = "Hello world!"
+label_settings = SubResource("LabelSettings_7mae0")

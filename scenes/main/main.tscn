@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://b26i1x3h1wmin"]
+
+[ext_resource type="Script" path="res://globals/Logger.cs" id="1_5wth4"]
+[ext_resource type="Script" path="res://globals/Events.cs" id="2_sklfi"]
+[ext_resource type="Script" path="res://globals/SceneManager.cs" id="3_24y0h"]
+
+[node name="Main" type="Node"]
+
+[node name="Logger" type="Node" parent="."]
+script = ExtResource("1_5wth4")
+
+[node name="Events" type="Node" parent="."]
+script = ExtResource("2_sklfi")
+
+[node name="SceneManager" type="Node" parent="."]
+script = ExtResource("3_24y0h")
