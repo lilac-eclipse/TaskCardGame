@@ -14,7 +14,7 @@ internal static class Tools
         switch (args[0].ToLower())
         {
             case "proj2clip":
-                ProjToClipboard.Run(args[1..]);
+                ProjToClipboard.Run();
                 break;
             default:
                 Console.WriteLine($"Unknown tool: {args[0]}");

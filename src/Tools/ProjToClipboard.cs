@@ -4,13 +4,13 @@ namespace Tools;
 
 internal static class ProjToClipboard
 {
-    private static readonly HashSet<string> DirsToSkip =
+    private static readonly HashSet<string> s_dirsToSkip =
         ["bin", "obj", ".idea", ".git", ".godot", "Tools"];
 
-    private static readonly HashSet<string> FileExtensionsToSkipContent =
+    private static readonly HashSet<string> s_fileExtensionsToSkipContent =
         [".svg", ".png", ".jpg", ".jpeg", ".tscn", ".import"];
 
-    public static void Run(string[] args)
+    public static void Run()
     {
         string projectRoot = FindProjectRoot(Directory.GetCurrentDirectory());
 
@@ -98,7 +98,7 @@ internal static class ProjToClipboard
 
             string extension = Path.GetExtension(file);
 
-            if (FileExtensionsToSkipContent.Contains(extension))
+            if (s_fileExtensionsToSkipContent.Contains(extension))
             {
                 continue;
             }
@@ -112,5 +112,5 @@ internal static class ProjToClipboard
     }
 
     private static bool ShouldSkipDirectory(string dir) =>
-        dir.Split(Path.DirectorySeparatorChar).Any(segment => DirsToSkip.Contains(segment));
+        dir.Split(Path.DirectorySeparatorChar).Any(segment => s_dirsToSkip.Contains(segment));
 }

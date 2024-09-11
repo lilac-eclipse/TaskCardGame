@@ -12,17 +12,29 @@ public partial class Logger : Node
     // Singleton logic
     public static Logger Instance { get; private set; }
 
-    public void Debug(string message, [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0) =>
+    public void Debug(string message, [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+    {
+        ArgumentNullException.ThrowIfNull(filePath);
         FormatAndLog(message, LogLevel.Debug, filePath, lineNumber);
+    }
 
-    public void Info(string message, [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0) =>
+    public void Info(string message, [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+    {
+        ArgumentNullException.ThrowIfNull(filePath);
         FormatAndLog(message, LogLevel.Info, filePath, lineNumber);
+    }
 
-    public void Warn(string message, [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0) =>
+    public void Warn(string message, [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+    {
+        ArgumentNullException.ThrowIfNull(filePath);
         FormatAndLog(message, LogLevel.Warn, filePath, lineNumber);
+    }
 
-    public void Error(string message, [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0) =>
+    public void Error(string message, [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+    {
+        ArgumentNullException.ThrowIfNull(filePath);
         FormatAndLog(message, LogLevel.Error, filePath, lineNumber);
+    }
 
     private void FormatAndLog(string format, LogLevel level, string filePath, int lineNumber)
     {
@@ -51,6 +63,8 @@ public partial class Logger : Node
                 GD.PrintRich($"[color=ORANGE_RED]{msg}[/color]");
                 GD.PushError(msg);
                 break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(level), level, null);
         }
     }
 

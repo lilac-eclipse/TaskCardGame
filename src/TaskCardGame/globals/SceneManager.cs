@@ -8,7 +8,7 @@ public partial class SceneManager : Node
     private PackedScene _gameScene = GD.Load<PackedScene>("res://scenes/game/game.tscn");
 
     // Define singleton logic
-    public static SceneManager Instance { get; private set; }
+    private static SceneManager Instance { get; set; }
 
     public override void _Ready()
     {

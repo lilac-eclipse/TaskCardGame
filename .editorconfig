@@ -154,6 +154,9 @@ csharp_space_between_method_declaration_parameter_list_parentheses = false
 csharp_space_between_parentheses = false
 csharp_space_between_square_brackets = false
 
+# Godot additions
+dotnet_diagnostic.CA2213.severity = none # Disable disposable rule
+
 # C++ Files
 [*.{cpp,h,in}]
 curly_bracket_next_line = true
