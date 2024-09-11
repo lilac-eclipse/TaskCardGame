@@ -5,4 +5,9 @@
     <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'ios' ">net8.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
   </PropertyGroup>
+  <ItemGroup>
+    <Content Include="icon.svg" />
+    <Content Include="icon.svg.import" />
+    <Content Include="project.godot" />
+  </ItemGroup>
 </Project>
