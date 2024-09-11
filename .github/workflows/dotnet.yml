@@ -22,10 +22,10 @@ jobs:
         run: dotnet restore
 
       - name: Build
-        run: dotnet build --no-restore --configuration Release /p:EnableWindowsTargeting=true
+        run: dotnet build --no-restore --configuration ExportRelease /p:EnableWindowsTargeting=true
 
       - name: Test
-        run: dotnet test --no-build --verbosity normal
+        run: dotnet test --no-build --verbosity normal --configuration ExportRelease
 
       - name: Check Code Style
         run: dotnet format --verify-no-changes --verbosity diagnostic
