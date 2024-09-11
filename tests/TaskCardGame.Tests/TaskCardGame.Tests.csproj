@@ -28,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TaskCardGame\TaskCardGame.csproj"/>
+    <ProjectReference Include="..\..\src\TaskCardGame\TaskCardGame.csproj"/>
   </ItemGroup>
 
 </Project>
